@@ -3,7 +3,7 @@ import Button from "@material-ui/core/Button";
 import {makeStyles} from "@material-ui/core/styles";
 
 const CustomButton = (props) => {
-    const {variant, buttonType, buttonText, onclick, fullWidth} = props
+    const {variant, buttonType, buttonText, onclick, fullWidth, disabled} = props
 
     const useBtnStyle = makeStyles((theme) => ({
         btn: {
@@ -15,7 +15,15 @@ const CustomButton = (props) => {
 
     return (
         <Fragment>
-            <Button type={buttonType} fullWidth={fullWidth} onClick={onclick} color="primary" variant={variant} className={myStyle.btn}>
+            <Button
+                type={buttonType}
+                fullWidth={fullWidth}
+                onClick={onclick}
+                color="primary"
+                variant={variant}
+                className={myStyle.btn}
+                disabled={disabled}
+            >
                 {buttonText}
             </Button>
         </Fragment>

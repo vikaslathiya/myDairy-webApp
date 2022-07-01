@@ -13,6 +13,7 @@ import CustomTextField from "../../components/TextField";
 import CustomButton from "../../components/Button";
 import {useLogInStyle} from "./style";
 import CustomizedSnackbars from "../../components/Snackbar";
+import LoadingSpin from "../../components/LoadingSpin";
 
 
 const LoginPage = () => {
@@ -24,10 +25,11 @@ const LoginPage = () => {
     const [userInput, setUserInput] = useState({})
     const [snackbarType, setSnackbarType] = useState('')
     const [snackbarMessage, setSnackbarMessage] = useState('')
+    const [loading, setLoading] = useState(false)
 
 
     const {allUsers} = useSelector(state => state.getUsers)
-    const {data, error} = useSelector(state => state.signUpUser)
+    const {data, error, loadingSignUp} = useSelector(state => state.signUpUser)
 
 
     useEffect(() => {
@@ -47,10 +49,11 @@ const LoginPage = () => {
             ShowSnackbar('success', data?.message)
             setTimeout(() => {
                 history.push("/display-agentCode");
+                setLoading(false)
             }, 3000)
         }
         dispatch(ClearResponse())
-    }, [data, error])
+    }, [data, error, loadingSignUp])
 
     const signUpHandler = (e) => {
         e.preventDefault();
@@ -67,10 +70,11 @@ const LoginPage = () => {
     }
 
     const userAuthHandler = () => {
+        setLoading(true)
         if (isLogIn) {
 
             const {agentCode, password} = userInput
-            dispatch(LoginUser(agentCode, password, allUsers, history, ShowSnackbar))
+            dispatch(LoginUser(agentCode, password, allUsers, history, ShowSnackbar, setLoading))
 
         } else {
 
@@ -91,7 +95,8 @@ const LoginPage = () => {
 
     return (
         <Fragment>
-            <Grid container className={myStyle.container}>
+            {loading && <LoadingSpin/>}
+            {!loading && <Grid container className={myStyle.container}>
                 <Grid item lg={12} md={12} xs={12}>
                     <Typography variant={'h3'} component={'h3'} align={'center'} className={myStyle.heading}>
                         myDairy
@@ -151,7 +156,7 @@ const LoginPage = () => {
                         <span className={myStyle.footerText} onClick={signUpHandler}>If already have account</span>}
                     </Typography>
                 </Grid>
-            </Grid>
+            </Grid>}
 
             <CustomizedSnackbars type={snackbarType} message={snackbarMessage} duration={2000}/>
         </Fragment>

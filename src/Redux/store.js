@@ -7,12 +7,16 @@ import {loginReducer} from "./Reducers/Auth/LoginReducer";
 import {isLoggedInReducer} from "./Reducers/Auth/LoginStatus";
 import {SignUpReducer} from "./Reducers/Auth/SignUpReducer";
 import {getUsersReducers} from "./Reducers/getUsers/GetUsersReducers";
+import {AddedQtyReducer, getAllOrdersReducers, placeOrderReducer} from "./Reducers/OrderReducers/orderReducers";
 
 const reducer = combineReducers({
     loginUser: loginReducer,
     isLoggedIn: isLoggedInReducer,
     signUpUser: SignUpReducer,
     getUsers: getUsersReducers,
+    addedQty: AddedQtyReducer,
+    placeOrder: placeOrderReducer,
+    getAllOrders: getAllOrdersReducers,
 })
 
 const persistConfig = {

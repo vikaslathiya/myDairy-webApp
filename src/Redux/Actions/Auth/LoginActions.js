@@ -1,6 +1,13 @@
 import CONSTANTS from "../../../Comman/constants";
 
-export const LoginUser = (agentCode, password, allUsers, history, ShowSnackbar) => async (dispatch) => {
+const loginError = (ShowSnackbar, setLoading) => {
+    setTimeout(() => {
+        ShowSnackbar('error', "Enter Valid details")
+        setLoading(false)
+    }, 2000)
+}
+
+export const LoginUser = (agentCode, password, allUsers, history, ShowSnackbar, setLoading) => async (dispatch) => {
     dispatch({type: CONSTANTS.GET_LOGIN_REQUEST})
 
     const matchedUser = allUsers.find(user => user.agentCode === Number(agentCode))
@@ -14,10 +21,11 @@ export const LoginUser = (agentCode, password, allUsers, history, ShowSnackbar) 
                 localStorage.setItem('isLoggedIn', "true")
                 dispatch({type: CONSTANTS.USER_IS_LOGGEDIN, payload: true});
                 history.push("/home-page");
+                setLoading(false)
             }, 3000)
-        } else ShowSnackbar('error', "Enter Valid details")
+        } else loginError(ShowSnackbar, setLoading)
 
-    } else ShowSnackbar('error', "Enter Valid details")
+    } else loginError(ShowSnackbar, setLoading)
 }
 
 export const logoutUser = (history) => (dispatch) => {

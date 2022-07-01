@@ -7,7 +7,8 @@ const config = {
     }
 }
 
-const url = `https://my-milk-dairy-14b69-default-rtdb.asia-southeast1.firebasedatabase.app/users.json`
+// const url = `https://my-milk-dairy-14b69-default-rtdb.asia-southeast1.firebasedatabase.app/users.json`
+const url = `/users.json`
 
 export const GetAllUsers = () => async (dispatch) => {
 

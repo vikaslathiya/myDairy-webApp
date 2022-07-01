@@ -4,18 +4,16 @@ import {useHistory} from 'react-router-dom';
 
 import clsx from 'clsx';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import {useStyles} from '../../MuiCss/Mui-Css';
 import AllRoutes from "../../Routes/AllRoutes";
 import CustomAppBar from "../../components/AppBar";
 import CustomDrawer from "../../components/Drawer";
+import {useHomepageStyle} from "./style";
 
 
 const HomePage = () => {
     const [open, setOpen] = useState(false);
     const history = useHistory();
-
-    // Mui-Css 
-    const classes = useStyles();
+    const classes = useHomepageStyle();
 
     const homePageHandler = (e) => {
         e.preventDefault();

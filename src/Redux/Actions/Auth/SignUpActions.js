@@ -10,7 +10,8 @@ const config = {
 export const SignUpUser = (SignUpData) => async (dispatch) => {
     dispatch({type: CONSTANTS.GET_SIGNUP_REQUEST})
     try {
-        const url = `https://my-milk-dairy-14b69-default-rtdb.asia-southeast1.firebasedatabase.app/users.json`
+        // const url = `https://my-milk-dairy-14b69-default-rtdb.asia-southeast1.firebasedatabase.app/users.json`
+        const url = `/users.json`
         const {status} = await axios.post(url, SignUpData, config)
 
         if (status === 200) {

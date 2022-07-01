@@ -39,25 +39,25 @@ const CustomDrawer = (props) => {
                 <Divider/>
                 <List className={classes.list}>
 
+                    <Link to={`/home-page`} onClick={handleDrawerClose}>
+                        <ListItem button>
+                            <ListItemText>Home</ListItemText>
+                        </ListItem>
+                    </Link>
+
                     <Link to={`/new-order`} onClick={handleDrawerClose}>
                         <ListItem button>
                             <ListItemText>New Order</ListItemText>
                         </ListItem>
                     </Link>
 
-                    <Link to={`${match.url}/copy-order`} onClick={handleDrawerClose}>
-                        <ListItem button>
-                            <ListItemText>Copy Order</ListItemText>
-                        </ListItem>
-                    </Link>
-
-                    <Link to={`${match.url}/last-order`} onClick={handleDrawerClose}>
+                    <Link to={`/last-order`} onClick={handleDrawerClose}>
                         <ListItem button>
                             <ListItemText> Show Last Order</ListItemText>
                         </ListItem>
                     </Link>
 
-                    <Link to={`${match.url}/all-order`} onClick={handleDrawerClose}>
+                    <Link to={`/all-order`} onClick={handleDrawerClose}>
                         <ListItem button>
                             <ListItemText>All Orders</ListItemText>
                         </ListItem>

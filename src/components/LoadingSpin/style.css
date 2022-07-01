@@ -1,0 +1,17 @@
+.noData {
+    margin: auto;
+    text-align: center;
+
+}
+
+.container {
+    margin-top: 18vh;
+    display: flex;
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    height: 55vh;
+}
+
+img {
+    width: 100px
+}

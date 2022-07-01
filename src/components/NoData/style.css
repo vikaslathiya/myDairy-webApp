@@ -1,0 +1,20 @@
+.noData {
+    margin: auto;
+    text-align: center;
+}
+
+.container {
+    margin-top: 18vh;
+    display: flex;
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    height: 55vh;
+}
+
+img {
+    width: 180px
+}
+
+h2 {
+    margin-top: -1px;
+}

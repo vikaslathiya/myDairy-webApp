@@ -23,7 +23,7 @@ const UserProfile = () => {
             name: loginUser.name,
             password: loginUser.password
         })
-    }, [loginUser])
+    }, [])
 
     const useStyles = makeStyles(() => ({
         container: {
@@ -63,7 +63,6 @@ const UserProfile = () => {
     const changePasswordHandler = (e) => {
         setChangePassword({...changePassword, password: e.target.value})
     }
-    console.log(changePassword)
 
     const handleChangeNewPassword = () => {
         dispatch(ChangePassword(changePassword.id, changePassword))
