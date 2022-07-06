@@ -10,6 +10,7 @@ import dahi200 from "../../Asset/dahi_200.jpeg";
 import dahi1kg from "../../Asset/dahi_1kg.webp";
 import PlaceOrderLayOut from "../../Layout/PlaceOrder";
 import LoadingSpin from "../../components/LoadingSpin";
+import ScreenTitle from "../../components/ScreenTitle";
 
 const NewOrder = () => {
     const [loading, setLoading] = useState(false)
@@ -18,7 +19,7 @@ const NewOrder = () => {
         setLoading(true)
         setTimeout(() => {
             setLoading(false)
-        }, 2000)
+        }, 1000)
     }, [])
 
     function createData(name, id, amount, img) {
@@ -39,8 +40,9 @@ const NewOrder = () => {
 
     return (
         <Fragment>
-            {loading && <LoadingSpin/>}
+            <ScreenTitle title={'Place New Order'}/>
             {!loading && <PlaceOrderLayOut items={rows}/>}
+            {loading && <LoadingSpin/>}
         </Fragment>
     )
 }

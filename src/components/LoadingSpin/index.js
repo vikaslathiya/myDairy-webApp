@@ -5,11 +5,13 @@ import './style.css'
 const LoadingSpin = () => {
     return (
         <Fragment>
-            <div className='container'>
-                <div className='noData'>
-                    <img src={loader} alt={'loading...'}/>
-                </div>
+            <div className='spinner'>
             </div>
+            {/*<div className='container'>*/}
+            {/*    <div className='noData'>*/}
+            {/*        <img src={loader} alt={'loading...'}/>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
 
         </Fragment>
     )

@@ -43,7 +43,7 @@ const HomePage = () => {
                     [classes.contentShift]: open,
                 })}>
                     <div className={classes.drawerHeader}/>
-                    <AllRoutes/>
+                    <AllRoutes drawerStatus={open}/>
                 </main>
 
             </div>

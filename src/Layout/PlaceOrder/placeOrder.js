@@ -4,8 +4,7 @@ import {useOrderStyles} from "./style";
 import Typography from "@material-ui/core/Typography";
 import CustomButton from "../../components/Button";
 
-const
-    PlaceOrder = (props) => {
+const PlaceOrder = (props) => {
     const {total, placeOrderHandler} = props;
     const myStyle = useOrderStyles();
 

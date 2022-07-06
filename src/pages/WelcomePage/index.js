@@ -1,33 +1,41 @@
 import React, {Fragment, useEffect, useState} from 'react'
-import {Container, makeStyles} from '@material-ui/core';
+import {Grid} from "@mui/material";
+import WelcomeSection from "./welcome";
+import ServiceSection from "./service";
+import {useWelcomeStyle} from "./style";
+import LoadingSpin from "../../components/LoadingSpin";
+import CustomerCounting from "./customerCounting";
 
 
 const WelcomePage = () => {
     const [userName, SetUserName] = useState("")
+    const [loading, setLoading] = useState(false)
     const loginUser = JSON.parse(localStorage.getItem("userInfo"));
+    const myStyle = useWelcomeStyle()
 
     useEffect(() => {
+        setLoading(true)
+
         if (loginUser) {
             SetUserName(loginUser.name)
         }
-    }, [])
 
-    const useStyled = makeStyles(() => ({
-        container: {
-            textAlign: "center",
-            marginTop: "8%",
-            fontFamily: "system-ui",
-            fontSize: "1.2rem",
-        }
-    }));
-    const classes = useStyled();
+        setTimeout(() => {
+            setLoading(false)
+        }, 1000)
+    }, [])
 
     return (
         <Fragment>
-            <Container className={classes.container} maxWidth="sm">
-                <h2>Welcome, {userName}</h2>
-                <h3>to myDairy App</h3>
-            </Container>
+            <Grid container className={myStyle.mainContainer}>
+                {loading && <LoadingSpin/>}
+                {!loading && <>
+                    <WelcomeSection userName={userName}/>
+                    <ServiceSection/>
+                    <CustomerCounting/>
+                </>}
+
+            </Grid>
         </Fragment>
     )
 }

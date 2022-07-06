@@ -2,9 +2,14 @@ import React, {Fragment, useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import InputListTable from "../../components/InputListTable";
 import {getAllOrdersAction} from "../../Redux/Actions/OrderAction/orderActions";
+import LoadingSpin from "../../components/LoadingSpin";
+import NoData from "../../components/NoData";
+import ScreenTitle from "../../components/ScreenTitle";
 
 const OrderHistory = () => {
     const [data, setData] = useState([])
+    const [loading, setLoading] = useState(false)
+    const [noData, setNoData] = useState(false)
     const dispatch = useDispatch()
     const {allOrders, getOrderLoading} = useSelector(state => state.getAllOrders)
 
@@ -13,16 +18,13 @@ const OrderHistory = () => {
     }, [])
 
     useEffect(() => {
-        console.log('allOrders', allOrders)
-        // setLoading(getOrderLoading)
+        setLoading(getOrderLoading)
         if (allOrders && allOrders?.length > 0) {
-            // setOrderDate(date)
             allOrders.reverse()
             setData(allOrders)
-            // setNoData(false)
+            setNoData(false)
         } else {
-            // console.log('allOrders', allOrders)
-            // setNoData(true)
+            setNoData(true)
             setData([])
         }
     }, [allOrders, getOrderLoading])
@@ -47,8 +49,10 @@ const OrderHistory = () => {
 
     return (
         <Fragment>
-            <h1>Order History</h1>
-            <InputListTable tableData={data} columns={columns}/>
+            <ScreenTitle title={'Order History'}/>
+            {loading && <LoadingSpin/>}
+            {!loading && noData && <NoData/>}
+            {!loading && !noData && <InputListTable tableData={data} columns={columns}/>}
         </Fragment>
     )
 };

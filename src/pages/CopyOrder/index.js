@@ -6,6 +6,7 @@ import OrderDate from "../../components/OrderDate";
 import {useLocation} from "react-router-dom";
 import NoData from "../../components/NoData";
 import LoadingSpin from "../../components/LoadingSpin";
+import ScreenTitle from "../../components/ScreenTitle";
 
 const CopyOrder = () => {
     const [rows, setRows] = useState([])
@@ -51,6 +52,7 @@ const CopyOrder = () => {
 
     return (
         <Fragment>
+            <ScreenTitle title={'Previous Order'}/>
             {loading && <LoadingSpin/>}
             {!loading && noData && <NoData/>}
             {!loading && !noData &&

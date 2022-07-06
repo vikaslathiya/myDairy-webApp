@@ -2,22 +2,19 @@ import {makeStyles} from "@material-ui/core/styles";
 
 export const useTableStyles = makeStyles({
     table: {
-        minWidth: "100%",
-        margin: "auto",
-        "& .MuiButtonBase-root:": {
-            margin: "10px"
-        },
+        // minWidth: "100%",
+        // margin: "auto",
+        // "& .MuiButtonBase-root:": {
+        //     margin: "10px"
+        // },
     },
-    tableFooter: {
-        "&": {
-            display: "flex",
-            justifyContent: "space-between",
-        },
-        "& .MuiButtonBase-root": {
-            margin: " 6px",
-            fontSize: "10px",
-            padding: "5px",
-        },
+    tableHead: {
+        backgroundColor: "#3f51b5e6",
+        "& .MuiTableRow-root .MuiTableCell-root": {
+            fontWeight: 600,
+            color: "white",
+            fontSize: 17
+        }
     },
     tableCell: {
         "& .MuiTableCell-root": {

@@ -47,7 +47,7 @@ const CustomAppBar = (props) => {
                         <MenuIcon/>
                     </IconButton>
                     <Typography variant="h4" className={appBarStyled.typography} onClick={homePageHandler}>
-                        myDairy
+                        myDairy.com
                     </Typography>
 
                     <IconButton className={appBarStyled.notification}>

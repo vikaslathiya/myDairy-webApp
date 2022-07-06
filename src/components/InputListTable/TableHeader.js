@@ -12,8 +12,8 @@ const CustomTableHeader = (props) => {
 
     return (
         <Fragment>
-            <TableHead>
-                <TableRow className={classes.tableCell}>
+            <TableHead className={classes.tableHead}>
+                <TableRow >
                     {columns?.map(column => (
                         <TableCell key={column?._id}>
                             {column?.title}

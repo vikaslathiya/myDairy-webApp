@@ -3,7 +3,7 @@ import {makeStyles} from "@material-ui/core/styles";
 export const useItemCardStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
-        backgroundColor: "rgb(0 0 0 / 4%)",
+        // backgroundColor: "rgb(0 0 0 / 4%)",
         margin: "15px 7px",
         boxShadow: "0px 0px 5px 1px gray",
 

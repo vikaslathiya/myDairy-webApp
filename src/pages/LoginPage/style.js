@@ -1,13 +1,26 @@
 import {makeStyles} from "@material-ui/core/styles";
+import background from '../../Asset/cows-eating.jpg';
 
 export const useLogInStyle = makeStyles((theme) => ({
     container: {
         borderRadius: 10,
-        boxShadow: "0px 0px 6px 0px black",
+        boxShadow: "0px 0px 6px 0px gray",
         textAlign: "center",
         justifyContent: "center",
         width: "25%",
-        margin: "10% auto auto"
+        margin: "10% auto auto",
+        backgroundColor: 'white',
+        "&::before": {
+            content: '"\\2610"',
+            background: `url(${background}) no-repeat center center/cover`,
+            position: 'fixed',
+            height: '100vh',
+            top: 0,
+            left: 0,
+            width: '100%',
+            zIndex: -1,
+            opacity: 0.5,
+        }
     },
     heading: {
         borderRadius: '7px 7px 0px 0px',

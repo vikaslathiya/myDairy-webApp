@@ -99,7 +99,7 @@ const LoginPage = () => {
             {!loading && <Grid container className={myStyle.container}>
                 <Grid item lg={12} md={12} xs={12}>
                     <Typography variant={'h3'} component={'h3'} align={'center'} className={myStyle.heading}>
-                        myDairy
+                        myDairy.com
                     </Typography>
                 </Grid>
 
