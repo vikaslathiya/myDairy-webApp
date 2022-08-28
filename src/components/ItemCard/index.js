@@ -4,19 +4,23 @@ import {addedQtyAction} from "../../Redux/Actions/OrderAction/orderActions";
 import {useDispatch} from "react-redux";
 
 const ItemList = (props) => {
-    const {items} = props
-    const [totalQty, setTotalQty] = useState({
-        gold500: 0,
-        gold6Ltr: 0,
-        tazza500: 0,
-        tazza250: 0,
-        chhas500: 0,
-        chhas6Ltr: 0,
-        cowMilk500: 0,
-        dahi200: 0,
-        dahi1kg: 0,
-    });
+    const {items, images} = props
+    // const [items, setItems] = useState([])
+    const [totalQty, setTotalQty] = useState({});
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        const isCopyOrder = items?.filter(item => item.addedQty)
+        console.log('isCopyOrder', isCopyOrder)
+        if (isCopyOrder.length === 0) {
+            const tempItem = {}
+            images.map(img => {
+                tempItem[img?.name] = 0
+            })
+            console.log(tempItem)
+            setTotalQty(tempItem)
+        }
+    }, [images])
 
 
     useEffect(() => {
@@ -25,8 +29,8 @@ const ItemList = (props) => {
         if (items?.[0]?.addedQty) {
             items.map((item) => {
                 if (item?.addedQty) {
-                    qty[item._id] = item?.addedQty
-                    console.log(item?._id, item?.addedQty)
+                    qty[item.image] = item?.addedQty
+                    console.log(item?.image, item?.addedQty)
                 }
                 setTotalQty(qty)
             })
@@ -36,9 +40,9 @@ const ItemList = (props) => {
     useEffect(() => {
         const a = [];
         items.forEach((item) => {
-            if (item?.addedQty || totalQty?.[item?._id] > 0) {
-                item.addedQty = totalQty[item?._id];
-                item.totalAmt = totalQty[item?._id] * item?.amt;
+            if (item?.addedQty || totalQty?.[item?.image] > 0) {
+                item.addedQty = totalQty[item?.image];
+                item.totalAmt = totalQty[item?.image] * item?.price;
                 a.push(item)
             }
         })
@@ -57,20 +61,25 @@ const ItemList = (props) => {
     return (
         <Fragment>
             <div style={{marginBottom: 80}}>
-                {items.map((item) => (
-                    <ItemCard
-                        key={item?._id}
-                        id={item?._id}
-                        itemName={item?.itemName}
-                        img={item?.logo}
-                        amount={item?.amt}
-                        totalQty={totalQty[item._id]}
-                        decreaseHandler={decreaseHandler}
-                        increaseHandler={increaseHandler}
-                        increaseDisable={totalQty[item._id] === 10}
-                        decreaseDisable={totalQty[item._id] === 0}
-                    />
-                ))}
+                {items.map((item) => {
+                    const tempImg = images.find(img => img?.name === item?.image)
+                    console.log('qty >>>>>>>>>>>>', totalQty[item.image])
+                    return (
+                        <ItemCard
+                            key={item?.image}
+                            id={item?.image}
+                            itemName={item?.product}
+                            img={tempImg?.path}
+                            amount={item?.price}
+                            totalQty={totalQty[item.image]}
+                            decreaseHandler={decreaseHandler}
+                            increaseHandler={increaseHandler}
+                            increaseDisable={totalQty[item.image] === 10}
+                            decreaseDisable={totalQty[item.image] === 0}
+                        />
+                    )
+
+                })}
             </div>
 
         </Fragment>

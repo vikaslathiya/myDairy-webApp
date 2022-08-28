@@ -17,14 +17,14 @@ const ServiceCard = (props) => {
                             image={image}
                             alt={cardTitle}
                         />
-                        <CardContent className={myStyle.cardContent}>
+                        {cardTitle && cardDescription && <CardContent className={myStyle.cardContent}>
                             <Typography gutterBottom variant="h5" component="div">
                                 {cardTitle}
                             </Typography>
                             <Typography variant="body2" color="text.secondary">
                                 {cardDescription}
                             </Typography>
-                        </CardContent>
+                        </CardContent>}
                     </CardActionArea>
                 </Card>
             </Grid>

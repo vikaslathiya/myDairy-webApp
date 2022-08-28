@@ -19,7 +19,7 @@ const CustomTableBody = (props) => {
                 obj.amt = row?.items?.totalAmt;
 
                 row?.items?.orderItems?.map(item => {
-                    obj[item?.itemName] = {qty: item?.addedQty, rate: item?.amt}
+                    obj[item?.image] = {qty: item?.addedQty, rate: item?.amt}
                 })
 
                 tempData.push(obj)
@@ -36,7 +36,7 @@ const CustomTableBody = (props) => {
                 {tableData.map((row) => (
                     <TableRow key={row?._id} id={row._id} sx={{'&:last-child td, &:last-child th': {border: 0}}}>
                         {columns?.map(column => {
-                            let value, rate;
+                            let value;
                             if (column?._id === "date" || column?._id === "amt") {
                                 column?._id === 'date' ?
                                     value = new Date(row[column?._id]).toLocaleDateString('en-us', {
@@ -44,13 +44,12 @@ const CustomTableBody = (props) => {
                                     }) :
                                     value = row[column?._id]
                             } else {
-                                value = row[column?.title]?.qty
-                                rate = row[column?.title]?.rate
+                                value = row[column?._id]?.qty
                             }
                             return (
                                 <TableCell
                                     key={column?._id}
-                                           align={column?._id === 'date' ? 'left' : 'center'}
+                                    align={column?._id === 'date' ? 'left' : 'center'}
                                     style={{fontSize: 15}}
                                 >
                                     {value === undefined ? '-' :

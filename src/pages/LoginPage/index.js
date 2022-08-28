@@ -4,11 +4,11 @@ import {useHistory} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {ClearResponse, SignUpUser} from "../../Redux/Actions/Auth/SignUpActions";
-import {GetAllUsers} from "../../Redux/Actions/getUsers/getAllUsers";
+import {GetAllAdmins, GetAllUsers} from "../../Redux/Actions/getUsers/getAllUsers";
 import {LoginUser} from "../../Redux/Actions/Auth/LoginActions";
 
 import Typography from "@material-ui/core/Typography";
-import {Grid} from "@material-ui/core";
+import {FormControl, FormControlLabel, FormLabel, Grid, Radio, RadioGroup} from "@material-ui/core";
 import CustomTextField from "../../components/TextField";
 import CustomButton from "../../components/Button";
 import {useLogInStyle} from "./style";
@@ -22,7 +22,7 @@ const LoginPage = () => {
     const myStyle = useLogInStyle();
 
     const [isLogIn, setIsLogin] = useState(true);
-    const [userInput, setUserInput] = useState({})
+    const [userInput, setUserInput] = useState({role: 'user'})
     const [snackbarType, setSnackbarType] = useState('')
     const [snackbarMessage, setSnackbarMessage] = useState('')
     const [loading, setLoading] = useState(false)
@@ -33,8 +33,14 @@ const LoginPage = () => {
 
 
     useEffect(() => {
-        dispatch(GetAllUsers())
-    }, [])
+        if (userInput?.role === "user") dispatch(GetAllUsers())
+        if (userInput?.role === "admin") dispatch(GetAllAdmins())
+        // setUserInput({role: userInput?.role === 'user' ? 'admin' : "user"})
+    }, [userInput?.role])
+
+    useEffect(() => {
+        console.log(userInput)
+    }, [userInput])
 
     useEffect(() => {
         if (snackbarType !== '') {
@@ -58,6 +64,7 @@ const LoginPage = () => {
     const signUpHandler = (e) => {
         e.preventDefault();
         setIsLogin(!isLogIn);
+        setUserInput({role: 'user'})
     }
 
     const ShowSnackbar = (type, message) => {
@@ -73,8 +80,7 @@ const LoginPage = () => {
         setLoading(true)
         if (isLogIn) {
 
-            const {agentCode, password} = userInput
-            dispatch(LoginUser(agentCode, password, allUsers, history, ShowSnackbar, setLoading))
+            dispatch(LoginUser(userInput, allUsers, history, ShowSnackbar, setLoading))
 
         } else {
 
@@ -104,7 +110,37 @@ const LoginPage = () => {
                 </Grid>
 
                 <Grid item lg={12} md={12} xs={12} className={myStyle.form}>
-                    {isLogIn && <CustomTextField
+                    {isLogIn && <FormControl component="fieldset" className={myStyle.formControl}>
+                        <RadioGroup
+                            row
+                            aria-label="role"
+                            name="role"
+                            onChange={(e) => inputChangeHandler(e, "role")}
+                            defaultValue="user"
+                        >
+                            <FormControlLabel
+                                value="user"
+                                control={<Radio color="primary"/>}
+                                label="User"
+                                labelPlacement="start"
+                            />
+                            <FormControlLabel
+                                value="admin"
+                                control={<Radio color="primary"/>}
+                                label="Admin"
+                                labelPlacement="start"
+                            />
+                        </RadioGroup>
+                    </FormControl>}
+
+                    {isLogIn && userInput?.role === 'admin' && <CustomTextField
+                        fullWidth
+                        autoFocus
+                        label="userName"
+                        onchange={(e) => inputChangeHandler(e, "userName")}
+                    />}
+
+                    {isLogIn && userInput?.role !== 'admin' && <CustomTextField
                         fullWidth
                         autoFocus
                         label="Agent Code"
@@ -143,7 +179,7 @@ const LoginPage = () => {
                 </Grid>
 
                 <Grid item lg={12} md={12} xs={12} className={myStyle.footer}>
-                    <Typography variant={'div'} component={'div'} align={'center'}>
+                    <Typography variant={'body2'} component={'div'} align={'center'}>
                         {isLogIn && <>
                             <span className={myStyle.footerText}>
                                 Forget Password?

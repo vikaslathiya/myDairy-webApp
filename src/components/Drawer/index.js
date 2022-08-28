@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React, {Fragment, useEffect, useState} from "react";
 import Drawer from "@material-ui/core/Drawer";
 import IconButton from "@material-ui/core/IconButton";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
@@ -6,15 +6,24 @@ import Divider from "@material-ui/core/Divider";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import {Link, useRouteMatch} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import {useDrawerStyle} from "./style";
 import {useTheme} from "@material-ui/core/styles";
+import DrawerListItem from "./drawerListItem";
 
 const CustomDrawer = (props) => {
     const {open, setOpen} = props
     const theme = useTheme();
+    const {pathname} = useLocation();
     const classes = useDrawerStyle();
-    const match = useRouteMatch();
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'))
+    const [routeRole, setRouteRole] = useState(userInfo?.role)
+    console.log(pathname)
+    useEffect(() => {
+        if (userInfo && userInfo?.role) {
+            setRouteRole(userInfo?.role)
+        }
+    }, [userInfo])
 
     const handleDrawerClose = () => {
         setOpen(false);
@@ -38,31 +47,46 @@ const CustomDrawer = (props) => {
                 </div>
                 <Divider/>
                 <List className={classes.list}>
+                    {routeRole === 'user' && <>
+                        <DrawerListItem
+                            path={'/home-page'}
+                            onclick={handleDrawerClose}
+                            itemText={'Home'}
+                        />
+                        <DrawerListItem
+                            path={'/new-order'}
+                            onclick={handleDrawerClose}
+                            itemText={'New Order'}
+                        />
+                        <DrawerListItem
+                            path={'/last-order'}
+                            onclick={handleDrawerClose}
+                            itemText={'Show Last Order'}
+                        />
+                        <DrawerListItem
+                            path={'/all-order'}
+                            onclick={handleDrawerClose}
+                            itemText={'All Orders'}
+                        />
+                    </>}
 
-                    <Link to={`/home-page`} onClick={handleDrawerClose}>
-                        <ListItem button>
-                            <ListItemText>Home</ListItemText>
-                        </ListItem>
-                    </Link>
-
-                    <Link to={`/new-order`} onClick={handleDrawerClose}>
-                        <ListItem button>
-                            <ListItemText>New Order</ListItemText>
-                        </ListItem>
-                    </Link>
-
-                    <Link to={`/last-order`} onClick={handleDrawerClose}>
-                        <ListItem button>
-                            <ListItemText> Show Last Order</ListItemText>
-                        </ListItem>
-                    </Link>
-
-                    <Link to={`/all-order`} onClick={handleDrawerClose}>
-                        <ListItem button>
-                            <ListItemText>All Orders</ListItemText>
-                        </ListItem>
-                    </Link>
-
+                    {routeRole === 'admin' && <>
+                        <DrawerListItem
+                            path={'/dashboard'}
+                            onclick={handleDrawerClose}
+                            itemText={'Dashboard'}
+                        />
+                        <DrawerListItem
+                            path={'/products'}
+                            onclick={handleDrawerClose}
+                            itemText={'Products'}
+                        />
+                        <DrawerListItem
+                            path={'/support'}
+                            onclick={handleDrawerClose}
+                            itemText={'Support'}
+                        />
+                    </>}
                 </List>
             </Drawer>
         </Fragment>

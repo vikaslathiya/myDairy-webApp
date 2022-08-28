@@ -1,6 +1,6 @@
 import React, {Fragment} from "react";
 import {Grid, Typography} from "@mui/material";
-import CustomButton from "../../components/Button";
+import CustomButton from "../../../components/Button";
 import {useWelcomeStyle} from "./style";
 import {useHistory} from "react-router-dom";
 

@@ -1,9 +1,9 @@
 import React, {Fragment} from "react";
-import {TextField} from "@material-ui/core";
+import {InputAdornment, TextField} from "@material-ui/core";
 import {useTextFieldStyle} from "./style";
 
 const CustomTextField = (props) => {
-    const {label, onchange, fullWidth, autoFocus, variant, type, defaultValue, value} = props;
+    const {label, onchange, name, fullWidth, autoFocus, variant, type, defaultValue, value, startIcon} = props;
     const myStyle = useTextFieldStyle();
 
     return (
@@ -11,6 +11,7 @@ const CustomTextField = (props) => {
 
             <TextField label={label}
                        type={type}
+                       name={name}
                        value={value}
                        defaultValue={defaultValue}
                        variant={variant}
@@ -18,6 +19,9 @@ const CustomTextField = (props) => {
                        className={myStyle.textField}
                        fullWidth={fullWidth}
                        autoFocus={autoFocus}
+                       InputProps={{
+                           startAdornment: <InputAdornment position="start">{startIcon}</InputAdornment>,
+                       }}
                        InputLabelProps={{
                            shrink: true,
                        }}

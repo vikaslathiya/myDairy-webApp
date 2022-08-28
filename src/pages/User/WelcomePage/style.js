@@ -1,6 +1,7 @@
 import {makeStyles} from "@material-ui/core/styles";
-import background from '../../Asset/1751315.jpg';
-import milkBackground from '../../Asset/bg0.jpg';
+import background from '../../../Asset/1751315.jpg';
+import milkBackground from '../../../Asset/bg0.jpg';
+import product from '../../../Asset/milkBG.jpg';
 
 export const useWelcomeStyle = makeStyles((theme) => ({
     welcome: {
@@ -53,7 +54,7 @@ export const useWelcomeStyle = makeStyles((theme) => ({
         "& .MuiTypography-body2": {
             fontSize: '1.2rem',
         },
-        "& .MuiGrid-container" : {
+        "& .MuiGrid-container": {
             margin: '20px 2px'
         }
     },
@@ -73,5 +74,22 @@ export const useWelcomeStyle = makeStyles((theme) => ({
         "& .MuiTypography-root": {
             display: 'flex'
         },
+    },
+    productPhoto: {
+        marginBottom: 40,
+        "& .MuiTypography-root": {
+            marginTop: 30,
+            display: 'flex',
+            justifyContent: 'center',
+            fontFamily: 'Acme, sans-serif',
+            fontSize: '3.5rem',
+        }
+    },
+    imgCard: {
+        display: 'inline-block',
+        margin: 10,
+        "& .MuiTypography-root": {
+            fontSize: '1rem',
+        }
     }
 }))

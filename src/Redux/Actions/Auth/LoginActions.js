@@ -7,10 +7,15 @@ const loginError = (ShowSnackbar, setLoading) => {
     }, 2000)
 }
 
-export const LoginUser = (agentCode, password, allUsers, history, ShowSnackbar, setLoading) => async (dispatch) => {
+export const LoginUser = (logIn, allUsers, history, ShowSnackbar, setLoading) => async (dispatch) => {
     dispatch({type: CONSTANTS.GET_LOGIN_REQUEST})
-
-    const matchedUser = allUsers.find(user => user.agentCode === Number(agentCode))
+    const {agentCode, userName, role, password} = logIn
+    let matchedUser;
+    if (role === 'user') {
+        matchedUser = allUsers.find(user => user.agentCode === Number(agentCode))
+    } else if (role === 'admin') {
+        matchedUser = allUsers.find(user => user.userName === userName)
+    }
 
     if (matchedUser !== undefined) {
         const matchPassword = matchedUser.password === password;
@@ -20,7 +25,7 @@ export const LoginUser = (agentCode, password, allUsers, history, ShowSnackbar, 
                 localStorage.setItem("userInfo", JSON.stringify(matchedUser));
                 localStorage.setItem('isLoggedIn', "true")
                 dispatch({type: CONSTANTS.USER_IS_LOGGEDIN, payload: true});
-                history.push("/home-page");
+                history.push(role === 'user' ? "/home-page" : '/dashboard');
                 setLoading(false)
             }, 3000)
         } else loginError(ShowSnackbar, setLoading)

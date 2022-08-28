@@ -9,7 +9,7 @@ import LoadingSpin from "../../components/LoadingSpin";
 import OrderDate from "../../components/OrderDate";
 
 const PlaceOrderLayOut = (props) => {
-    const {items, orderDate} = props
+    const {items, images, orderDate} = props
     const history = useHistory();
     const dispatch = useDispatch();
     const [rows, setRows] = useState([])
@@ -85,7 +85,7 @@ const PlaceOrderLayOut = (props) => {
 
             {!loading && <>
                 {orderDate && <OrderDate orderDate={orderDate}/>}
-                <ItemList items={rows}/>
+                <ItemList items={rows} images={images}/>
                 {showFooter && <PlaceOrder total={grandTotal} placeOrderHandler={orderHandler}/>}
             </>}
             <CustomizedSnackbars type={snackbarType} message={snackbarMessage} duration={2000}/>

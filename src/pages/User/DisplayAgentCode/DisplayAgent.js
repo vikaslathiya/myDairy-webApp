@@ -3,8 +3,8 @@ import {useStyles} from "./style";
 import React, {Fragment, useEffect, useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
-import {GetAllUsers} from "../../Redux/Actions/getUsers/getAllUsers";
-import CustomButton from "../../components/Button";
+import {GetAllUsers} from "../../../Redux/Actions/getUsers/getAllUsers";
+import CustomButton from "../../../components/Button";
 import DoneIcon from '@mui/icons-material/Done';
 
 const DisplayAgent = () => {

@@ -3,7 +3,7 @@ import Button from "@material-ui/core/Button";
 import {makeStyles} from "@material-ui/core/styles";
 
 const CustomButton = (props) => {
-    const {variant, buttonType, buttonText, onclick, fullWidth, disabled} = props
+    const {variant, buttonType, buttonText, onclick, fullWidth, disabled, startIcon} = props
 
     const useBtnStyle = makeStyles((theme) => ({
         btn: {
@@ -23,6 +23,7 @@ const CustomButton = (props) => {
                 variant={variant}
                 className={myStyle.btn}
                 disabled={disabled}
+                startIcon={startIcon}
             >
                 {buttonText}
             </Button>

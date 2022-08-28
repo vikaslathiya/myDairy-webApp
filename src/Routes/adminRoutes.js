@@ -1,25 +1,25 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState} from "react";
 import {Redirect, Route} from "react-router-dom";
 import {useSelector} from "react-redux";
 
-const PrivateRoute = ({component: Component, ...rest}) => {
+
+const AdminRoutes = ({component: Component, ...rest}) => {
     const {isLoggedIn} = useSelector((state) => state.isLoggedIn);
     const userInfo = JSON.parse(localStorage.getItem('userInfo'))
     const [routeRole, setRouteRole] = useState(userInfo?.role)
 
     useEffect(() => {
-        if (userInfo?.role === 'user') {
+        if (userInfo?.role === 'admin') {
             setRouteRole(userInfo?.role)
         }
     }, [userInfo])
 
-    return (routeRole === 'user') &&
+    return (routeRole === 'admin') &&
         <Route render={(props) => (
-            (isLoggedIn) ?
-                <Component {...props} {...rest} />
+            (isLoggedIn) ? <Component {...props} {...rest} />
                 : <Redirect to="/login"/>
         )}
-        />
-};
+        />;
+}
 
-export default PrivateRoute;
+export default AdminRoutes;

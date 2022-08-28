@@ -3,8 +3,10 @@ import {Grid} from "@mui/material";
 import WelcomeSection from "./welcome";
 import ServiceSection from "./service";
 import {useWelcomeStyle} from "./style";
-import LoadingSpin from "../../components/LoadingSpin";
+import LoadingSpin from "../../../components/LoadingSpin";
 import CustomerCounting from "./customerCounting";
+import ProductPhotos from "./productPhotos";
+import Footer from "../../../components/Footer";
 
 
 const WelcomePage = () => {
@@ -33,6 +35,8 @@ const WelcomePage = () => {
                     <WelcomeSection userName={userName}/>
                     <ServiceSection/>
                     <CustomerCounting/>
+                    <ProductPhotos/>
+                    <Footer/>
                 </>}
 
             </Grid>

@@ -8,6 +8,7 @@ import {isLoggedInReducer} from "./Reducers/Auth/LoginStatus";
 import {SignUpReducer} from "./Reducers/Auth/SignUpReducer";
 import {getUsersReducers} from "./Reducers/getUsers/GetUsersReducers";
 import {AddedQtyReducer, getAllOrdersReducers, placeOrderReducer} from "./Reducers/OrderReducers/orderReducers";
+import {addProductReducers, getProductImageReducers, getProductsReducers} from "./Reducers/Admin/productReducers";
 
 const reducer = combineReducers({
     loginUser: loginReducer,
@@ -17,6 +18,9 @@ const reducer = combineReducers({
     addedQty: AddedQtyReducer,
     placeOrder: placeOrderReducer,
     getAllOrders: getAllOrdersReducers,
+    addProduct: addProductReducers,
+    getProducts: getProductsReducers,
+    getImages: getProductImageReducers
 })
 
 const persistConfig = {
@@ -31,7 +35,7 @@ const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localS
 const isLoggedInFromStorage = localStorage.getItem('isLoggedIn') ? localStorage.getItem('isLoggedIn') : false;
 
 const initialState = {
-    userLogin: {userInfo: userInfoFromStorage},
+    // userLogin: {userInfo: userInfoFromStorage},
     isLoggedIn: {isLoggedIn: isLoggedInFromStorage},
 };
 

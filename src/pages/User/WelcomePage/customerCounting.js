@@ -1,5 +1,5 @@
 import {Fragment} from "react";
-import Counting from "../../components/CompanyCounting/counts";
+import Counting from "../../../components/CompanyCounting/counts";
 import {Grid} from "@material-ui/core";
 import {useWelcomeStyle} from "./style";
 

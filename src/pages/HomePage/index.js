@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 
 import {useHistory} from 'react-router-dom';
 
@@ -43,7 +43,7 @@ const HomePage = () => {
                     [classes.contentShift]: open,
                 })}>
                     <div className={classes.drawerHeader}/>
-                    <AllRoutes drawerStatus={open}/>
+                    <AllRoutes/>
                 </main>
 
             </div>

@@ -3,7 +3,7 @@ import {makeStyles} from '@material-ui/styles';
 import React, {Fragment, useEffect, useState} from 'react'
 import Button from "@material-ui/core/Button";
 import {useDispatch} from "react-redux";
-import {ChangePassword} from "../../Redux/Actions/getUsers/getAllUsers";
+import {ChangePassword} from "../../../Redux/Actions/getUsers/getAllUsers";
 
 const UserProfile = () => {
     const loginUser = JSON.parse(localStorage.getItem("userInfo"));

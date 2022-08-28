@@ -83,5 +83,12 @@ export const useItemCardStyles = makeStyles((theme) => ({
     qtyBox: {
         display: "flex",
         alignItems: "center"
+    },
+    statusColor: {
+        width: 10,
+        height: 10,
+        // border: '1px solid black',
+        borderRadius: 10,
+        backgroundColor: props => props.itemStatusColor
     }
 }));

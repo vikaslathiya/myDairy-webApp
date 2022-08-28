@@ -7,6 +7,8 @@ const config = {
     }
 }
 
+const domain = `https://my-milk-dairy-14b69-default-rtdb.asia-southeast1.firebasedatabase.app`
+
 export const addedQtyAction = (data) => {
     return {
         type: CONSTANTS.ADDED_QUANTITY,
@@ -19,7 +21,7 @@ export const placeOrderAction = (data) => async (dispatch) => {
 
     const userInfo = JSON.parse(localStorage.getItem('userInfo')) ? JSON.parse(localStorage.getItem('userInfo')) : ""
     // let url = `https://my-milk-dairy-14b69-default-rtdb.asia-southeast1.firebasedatabase.app/users/${userInfo.id}/user-orders.json/`
-    let url = `/users/${userInfo.id}/user-orders.json/`
+    let url = `${domain}/users/${userInfo.id}/user-orders.json/`
 
     try {
         const res = await axios.post(url, data, config)
@@ -55,7 +57,7 @@ export const getAllOrdersAction = () => async (dispatch) => {
     dispatch({type: CONSTANTS.GET_ALL_ORDERS_REQUEST})
 
     const userInfo = JSON.parse(localStorage.getItem('userInfo')) ? JSON.parse(localStorage.getItem('userInfo')) : ""
-    let url = `/users/${userInfo.id}/user-orders.json/`
+    let url = `${domain}/users/${userInfo.id}/user-orders.json/`
 
     try {
         const res = await axios.get(url, config)

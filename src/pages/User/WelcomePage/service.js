@@ -1,13 +1,13 @@
 import {Fragment} from "react";
 import {Grid, Typography} from "@mui/material";
 import {useWelcomeStyle} from "./style";
-import ServiceCard from "../../components/ServiceCard";
-import delivery from '../../Asset/img.png'
-import testing from '../../Asset/chemistry.png'
-import temperature from '../../Asset/thermometer.png'
-import doorStep from '../../Asset/doorStep.png'
-import orderList from '../../Asset/orderlist.png'
-import testingKit from '../../Asset/testing-kit.png'
+import ServiceCard from "../../../components/ServiceCard";
+import delivery from '../../../Asset/img.png'
+import testing from '../../../Asset/chemistry.png'
+import temperature from '../../../Asset/thermometer.png'
+import doorStep from '../../../Asset/doorStep.png'
+import orderList from '../../../Asset/orderlist.png'
+import testingKit from '../../../Asset/testing-kit.png'
 
 const ServiceSection = () => {
     const myStyle = useWelcomeStyle()

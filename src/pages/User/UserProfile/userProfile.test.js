@@ -1,6 +1,6 @@
 import {render, screen} from "@testing-library/react";
 import UserProfile from "./index";
-import store from "../../Redux/store";
+import store from "../../../Redux/store";
 import {Provider} from "react-redux";
 import '@testing-library/jest-dom'
 

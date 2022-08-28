@@ -19,7 +19,8 @@ export const useTitleStyles = makeStyles({
         "&.MuiTypography-root": {
             fontWeight: 600,
             marginLeft: 20,
-            padding: '6px 2px'
+            padding: '6px 2px',
+            fontFamily: 'Acme, sans-serif',
         }
 
     }

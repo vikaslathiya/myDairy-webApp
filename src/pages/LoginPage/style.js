@@ -46,5 +46,17 @@ export const useLogInStyle = makeStyles((theme) => ({
     footerText: {
         cursor: "pointer",
         fontSize: 14
+    },
+    formControl: {
+        justifyContent: 'left',
+        display: 'flex',
+        margin: '6px 0',
+        "& .MuiFormGroup-root .MuiFormControlLabel-root": {
+            fontSize: '1rem',
+            fontWeight: 400,
+            color: 'rgba(0, 0, 0, 0.54)',
+            marginLeft: 2,
+            marginRight: 12
+        }
     }
 }))

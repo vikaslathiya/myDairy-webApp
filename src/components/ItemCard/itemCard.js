@@ -1,11 +1,12 @@
 import {Fragment, useEffect, useState} from "react";
-import {Card, CardMedia, Paper} from "@material-ui/core";
+import {Card, CardMedia, Grid, Paper} from "@material-ui/core";
 
 import {useItemCardStyles} from "./style";
-import {CardContent} from "@mui/material";
+import {Box, CardContent} from "@mui/material";
 import Typography from "@material-ui/core/Typography";
 import CustomButton from "../Button";
 import CustomTextField from "../TextField";
+import {logDOM} from "@testing-library/react";
 // import {useDispatch, useSelector} from "react-redux";
 // import {addedQtyAction} from "../../Redux/Actions/OrderAction/orderActions";
 
@@ -19,42 +20,20 @@ const ItemCard = (props) => {
         increaseHandler,
         decreaseHandler,
         increaseDisable,
-        decreaseDisable
+        decreaseDisable,
+        status
     } = props;
-    // const [totalQty, setTotalQty] = useState(0);
-    // const {addedQty} = useSelector(state => state.addedQty)
-    const classes = useItemCardStyles();
-    // const dispatch = useDispatch();
-
-    // useEffect(() => {
-    //     const allreadyPresent = addedQty?.[id]
-    //     if (allreadyPresent === undefined && totalQty > 0) {
-    //         dispatch(addedQtyAction({...addedQty, [id]: totalQty}))
-    //
-    //     } else if (allreadyPresent !== undefined) {
-    //         if (totalQty === 0) {
-    //             delete addedQty?.[id]
-    //             dispatch(addedQtyAction({...addedQty}))
-    //             return;
-    //         }
-    //         dispatch(addedQtyAction({...addedQty, [id]: totalQty}))
-    //     }
-    // }, [totalQty])
-
-    // const decreaseHandler = () => {
-    //     setTotalQty(totalQty - 1)
-    //     // setTotalQty(totalQty === 0 ? 0 : totalQty - 1)
-    // }
-    //
-    // const increaseHandler = () => {
-    //     setTotalQty(totalQty + 1)
-    //     // setTotalQty(totalQty === 10 ? 10 : totalQty + 1)
-    // }
+    const classes = useItemCardStyles({
+        itemStatusColor: status === 'Active' ? 'green' : 'red'
+    });
+    const {role} = JSON.parse(localStorage.getItem('userInfo'))
 
     return (
         <Fragment>
             <Card className={classes.root}>
                 <CardMedia
+                    id={'images'}
+                    component={'img'}
                     className={classes.cover}
                     image={img}
                     title={itemName}
@@ -69,7 +48,7 @@ const ItemCard = (props) => {
                         &#8377; {amount}
                     </Typography>
 
-                    <Paper className={classes.paper}>
+                    {role === 'user' && <Paper className={classes.paper}>
                         <CustomButton
                             variant='contained'
                             buttonText="-"
@@ -89,11 +68,23 @@ const ItemCard = (props) => {
                             onclick={() => increaseHandler(id)}
                             disabled={increaseDisable}
                         />
-                    </Paper>
+                    </Paper>}
+
+                    {role === 'admin' &&
+                    <Grid container style={{alignItems: 'center', marginTop: 10}}>
+                        <Grid item>
+                            <Box component={'div'} className={classes.statusColor}>{''}</Box>
+                        </Grid>
+                        <Grid item>
+                            <Typography variant={'subtitle1'} component={"h6"} style={{marginLeft: 5}}>
+                                {status}
+                            </Typography>
+                        </Grid>
+
+                    </Grid>}
                 </CardContent>
 
-                <CardContent className={classes.secContent}>
-
+                {role === 'user' && <CardContent className={classes.secContent}>
                     <div className={classes.qtyBox}>
                         <Typography component="h5" variant="h5" className={classes.itemName}>
                             Qty:
@@ -112,7 +103,7 @@ const ItemCard = (props) => {
                         &#8377; {totalQty * amount}
                     </Typography>
 
-                </CardContent>
+                </CardContent>}
             </Card>
         </Fragment>
     )

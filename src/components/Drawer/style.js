@@ -18,11 +18,20 @@ export const useDrawerStyle = makeStyles((theme) => ({
     },
     list: {
         padding: "10px 8px",
-        "& a": {
+    },
+    listItem: {
+        "&": {
             textDecoration: "none",
             color: "black",
             "&:hover": {
                 color: "white"
+            },
+        },
+        "& .MuiListItem-button.Mui-selected": {
+            backgroundColor: "#3f51b5",
+            color: "white",
+            "&:hover": {
+                backgroundColor: "rgb(104,123,222)",
             }
         },
         "& .MuiListItem-button:hover": {
