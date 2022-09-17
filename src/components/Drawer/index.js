@@ -47,7 +47,7 @@ const CustomDrawer = (props) => {
                 </div>
                 <Divider/>
                 <List className={classes.list}>
-                    {routeRole === 'user' && <>
+                    {routeRole === 'User' && <>
                         <DrawerListItem
                             path={'/home-page'}
                             onclick={handleDrawerClose}
@@ -70,7 +70,7 @@ const CustomDrawer = (props) => {
                         />
                     </>}
 
-                    {routeRole === 'admin' && <>
+                    {routeRole === 'Admin' && <>
                         <DrawerListItem
                             path={'/dashboard'}
                             onclick={handleDrawerClose}
@@ -80,6 +80,11 @@ const CustomDrawer = (props) => {
                             path={'/products'}
                             onclick={handleDrawerClose}
                             itemText={'Products'}
+                        />
+                        <DrawerListItem
+                            path={'/users'}
+                            onclick={handleDrawerClose}
+                            itemText={'Users'}
                         />
                         <DrawerListItem
                             path={'/support'}

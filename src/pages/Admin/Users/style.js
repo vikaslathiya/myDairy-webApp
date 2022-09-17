@@ -1,6 +1,6 @@
 import {makeStyles} from "@material-ui/core/styles";
 
-export const useProductStyles = makeStyles((theme) => ({
+export const useUsersStyles = makeStyles((theme) => ({
     btnGrid: {
         display: "flex",
         // justifyContent: "end",
@@ -21,17 +21,5 @@ export const useProductStyles = makeStyles((theme) => ({
         justifyContent: 'end',
         display: 'flex',
         marginRight: 30,
-    },
-    cover: {
-        width: 150,
-        height: 150,
-        margin: 'auto',
-    },
-    previewSection: {
-        margin: 'auto',
-        '& .MuiTypography-root' : {
-            textAlign: 'center',
-            fontWeight: 'bold'
-        }
     }
 }))

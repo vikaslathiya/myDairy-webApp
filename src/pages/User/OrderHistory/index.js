@@ -20,7 +20,6 @@ const OrderHistory = () => {
     useEffect(() => {
         dispatch(getAllOrdersAction())
         dispatch(getProductsAction())
-        createColumnData()
     }, [])
 
     useEffect(() => {
@@ -62,28 +61,6 @@ const OrderHistory = () => {
             setData([])
         }
     }, [allOrders, getOrderLoading])
-
-    const createColumnData = () => {
-        const tempData = {}
-
-    }
-
-    // const columns = [
-    //     createData('Date', 'date'),
-    //     products.map(product => {
-    //         createData(product?.name, product?.image)
-    //     }),
-    //     // createData('Gold 500ml', 'gold500'),
-    //     // createData('Gold 6 Ltr', 'gold6Ltr'),
-    //     // createData('Tazza 500ml', 'tazza500'),
-    //     // createData('Tazza 250ml', 'tazza250'),
-    //     // createData('Chhas 500ml', 'chhas500'),
-    //     // createData('Chhas 6 Ltr', 'chhas6Ltr'),
-    //     // createData('Cow Milk 500ml', 'cowMilk500'),
-    //     // createData('Dahi 200ml', 'dahi200'),
-    //     // createData('Dahi 1kg', 'dahi1kg'),
-    //     createData('Total Amount', 'amt'),
-    // ];
 
     return (
         <Fragment>

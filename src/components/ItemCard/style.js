@@ -3,38 +3,25 @@ import {makeStyles} from "@material-ui/core/styles";
 export const useItemCardStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
-        // backgroundColor: "rgb(0 0 0 / 4%)",
         margin: "15px 7px",
         boxShadow: "0px 0px 5px 1px gray",
-
+        "&:hover": {
+            '& .MuiCardActions-root': {
+                opacity: 1
+            }
+        },
         "& .MuiCardContent-root": {
             padding: "12px 25px",
             paddingBottom: "12px !important",
         }
     },
-    // details: {
-    //     display: 'flex',
-    //     flexDirection: 'column',
-    // },
-    // content: {
-    //     flex: '1 0 auto',
-    // },
     cover: {
         width: 150,
         height: 150
     },
-    // controls: {
-    //     display: 'flex',
-    //     alignItems: 'center',
-    //     paddingLeft: theme.spacing(1),
-    //     paddingBottom: theme.spacing(1),
-    // },
-    // playIcon: {
-    //     height: 38,
-    //     width: 38,
-    // },
     itemName: {
         fontWeight: 600,
+        fontSize: 24
     },
     paper: {
         width: "fit-content",
@@ -42,9 +29,10 @@ export const useItemCardStyles = makeStyles((theme) => ({
         margin: "10px 0",
         "& .MuiFormControl-root": {
             margin: 0,
+            height: 36,
             "& .MuiInputBase-root": {
                 height: 36,
-                width: 50,
+                width: 55,
                 borderRadius: 0,
                 "& .MuiOutlinedInput-input": {
                     textAlign: "center",
@@ -87,8 +75,21 @@ export const useItemCardStyles = makeStyles((theme) => ({
     statusColor: {
         width: 10,
         height: 10,
-        // border: '1px solid black',
         borderRadius: 10,
         backgroundColor: props => props.itemStatusColor
+    },
+    cardActions: {
+        display: 'flex',
+        alignItems: 'flex-end',
+        marginLeft: 'auto',
+        opacity: 0,
+        transition: 'opacity 1s',
+        "& .MuiGrid-root .css-w4z10b-MuiStack-root": {
+            margin: 3
+        }
+    },
+    IconButton: {
+        padding: 0,
+        color: '#2d2d2d'
     }
 }));

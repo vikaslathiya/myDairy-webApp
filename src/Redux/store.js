@@ -6,7 +6,7 @@ import storage from 'redux-persist/lib/storage';
 import {loginReducer} from "./Reducers/Auth/LoginReducer";
 import {isLoggedInReducer} from "./Reducers/Auth/LoginStatus";
 import {SignUpReducer} from "./Reducers/Auth/SignUpReducer";
-import {getUsersReducers} from "./Reducers/getUsers/GetUsersReducers";
+import {getUsersReducers, updateUserReducers} from "./Reducers/getUsers/GetUsersReducers";
 import {AddedQtyReducer, getAllOrdersReducers, placeOrderReducer} from "./Reducers/OrderReducers/orderReducers";
 import {addProductReducers, getProductImageReducers, getProductsReducers} from "./Reducers/Admin/productReducers";
 
@@ -20,7 +20,8 @@ const reducer = combineReducers({
     getAllOrders: getAllOrdersReducers,
     addProduct: addProductReducers,
     getProducts: getProductsReducers,
-    getImages: getProductImageReducers
+    getImages: getProductImageReducers,
+    updateUser: updateUserReducers,
 })
 
 const persistConfig = {

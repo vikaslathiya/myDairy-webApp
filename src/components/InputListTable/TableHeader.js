@@ -13,12 +13,16 @@ const CustomTableHeader = (props) => {
     return (
         <Fragment>
             <TableHead className={classes.tableHead}>
-                <TableRow >
-                    {columns?.map(column => (
-                        <TableCell key={column?._id}>
-                            {column?.title}
-                        </TableCell>
-                    ))}
+                <TableRow>
+                    {columns?.map(column => {
+                        if (column !== undefined) {
+                            return (
+                                <TableCell key={column?._id} align={column?._id === 'date' ? 'left' : 'center'}>
+                                    {column?.title}
+                                </TableCell>
+                            )
+                        }
+                    })}
                 </TableRow>
             </TableHead>
         </Fragment>

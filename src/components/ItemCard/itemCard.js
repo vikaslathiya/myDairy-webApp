@@ -1,5 +1,5 @@
-import {Fragment, useEffect, useState} from "react";
-import {Card, CardMedia, Grid, Paper} from "@material-ui/core";
+import React, {Fragment, useEffect, useState} from "react";
+import {Card, CardActions, CardMedia, Grid, Paper, Tooltip} from "@material-ui/core";
 
 import {useItemCardStyles} from "./style";
 import {Box, CardContent} from "@mui/material";
@@ -7,6 +7,12 @@ import Typography from "@material-ui/core/Typography";
 import CustomButton from "../Button";
 import CustomTextField from "../TextField";
 import {logDOM} from "@testing-library/react";
+import Stack from "@mui/material/Stack";
+import IconButton from "@material-ui/core/IconButton";
+import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
+import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import DeleteIcon from '@mui/icons-material/Delete';
+import ModeIcon from '@mui/icons-material/Mode';
 // import {useDispatch, useSelector} from "react-redux";
 // import {addedQtyAction} from "../../Redux/Actions/OrderAction/orderActions";
 
@@ -21,7 +27,8 @@ const ItemCard = (props) => {
         decreaseHandler,
         increaseDisable,
         decreaseDisable,
-        status
+        status,
+        editAction
     } = props;
     const classes = useItemCardStyles({
         itemStatusColor: status === 'Active' ? 'green' : 'red'
@@ -48,7 +55,7 @@ const ItemCard = (props) => {
                         &#8377; {amount}
                     </Typography>
 
-                    {role === 'user' && <Paper className={classes.paper}>
+                    {role === 'User' && <Paper className={classes.paper}>
                         <CustomButton
                             variant='contained'
                             buttonText="-"
@@ -70,7 +77,7 @@ const ItemCard = (props) => {
                         />
                     </Paper>}
 
-                    {role === 'admin' &&
+                    {role === 'Admin' &&
                     <Grid container style={{alignItems: 'center', marginTop: 10}}>
                         <Grid item>
                             <Box component={'div'} className={classes.statusColor}>{''}</Box>
@@ -80,11 +87,10 @@ const ItemCard = (props) => {
                                 {status}
                             </Typography>
                         </Grid>
-
                     </Grid>}
                 </CardContent>
 
-                {role === 'user' && <CardContent className={classes.secContent}>
+                {role === 'User' && <CardContent className={classes.secContent}>
                     <div className={classes.qtyBox}>
                         <Typography component="h5" variant="h5" className={classes.itemName}>
                             Qty:
@@ -104,6 +110,24 @@ const ItemCard = (props) => {
                     </Typography>
 
                 </CardContent>}
+
+                {role === 'Admin' && <CardActions className={classes.cardActions}>
+                    <Stack direction="column" spacing={1}>
+                        <Tooltip title="Edit" placement="left">
+                            <IconButton aria-label="Edit" size="small"
+                                        className={classes.IconButton}>
+                                <CreateOutlinedIcon onClick={editAction}/>
+                            </IconButton>
+                        </Tooltip>
+                        <Tooltip title="Delete" placement="left">
+                            <IconButton aria-label="Delete" size="small"
+                                        className={classes.IconButton}>
+                                <DeleteOutlineOutlinedIcon/>
+                            </IconButton>
+                        </Tooltip>
+                    </Stack>
+                </CardActions>}
+
             </Card>
         </Fragment>
     )

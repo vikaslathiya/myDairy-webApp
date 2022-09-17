@@ -10,6 +10,8 @@ import AdminRoutes from "./adminRoutes";
 import Dashboard from "../pages/Admin/Dashboard";
 import Products from "../pages/Admin/Products";
 import AddProduct from "../pages/Admin/Products/addProduct";
+import Users from "../pages/Admin/Users";
+import AddUser from "../pages/Admin/Users/addUser";
 
 const AllRoutes = () => {
     return (
@@ -26,6 +28,8 @@ const AllRoutes = () => {
                 <AdminRoutes path={"/dashboard"} component={Dashboard}/>
                 <AdminRoutes path={"/products"} component={Products}/>
                 <AdminRoutes path={"/add-product"} component={AddProduct}/>
+                <AdminRoutes path={"/users"} component={Users}/>
+                <AdminRoutes path={"/add-user"} component={AddUser}/>
             </Switch>
         </Fragment>
     );

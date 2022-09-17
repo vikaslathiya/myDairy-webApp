@@ -8,12 +8,12 @@ const PrivateRoute = ({component: Component, ...rest}) => {
     const [routeRole, setRouteRole] = useState(userInfo?.role)
 
     useEffect(() => {
-        if (userInfo?.role === 'user') {
+        if (userInfo?.role === 'User') {
             setRouteRole(userInfo?.role)
         }
     }, [userInfo])
 
-    return (routeRole === 'user') &&
+    return (routeRole === 'User') &&
         <Route render={(props) => (
             (isLoggedIn) ?
                 <Component {...props} {...rest} />

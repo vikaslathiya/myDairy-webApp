@@ -11,9 +11,9 @@ export const LoginUser = (logIn, allUsers, history, ShowSnackbar, setLoading) =>
     dispatch({type: CONSTANTS.GET_LOGIN_REQUEST})
     const {agentCode, userName, role, password} = logIn
     let matchedUser;
-    if (role === 'user') {
+    if (role === 'User') {
         matchedUser = allUsers.find(user => user.agentCode === Number(agentCode))
-    } else if (role === 'admin') {
+    } else if (role === 'Admin') {
         matchedUser = allUsers.find(user => user.userName === userName)
     }
 
@@ -25,7 +25,7 @@ export const LoginUser = (logIn, allUsers, history, ShowSnackbar, setLoading) =>
                 localStorage.setItem("userInfo", JSON.stringify(matchedUser));
                 localStorage.setItem('isLoggedIn', "true")
                 dispatch({type: CONSTANTS.USER_IS_LOGGEDIN, payload: true});
-                history.push(role === 'user' ? "/home-page" : '/dashboard');
+                history.push(role === 'User' ? "/home-page" : '/dashboard');
                 setLoading(false)
             }, 3000)
         } else loginError(ShowSnackbar, setLoading)

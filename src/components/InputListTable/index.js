@@ -10,7 +10,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const InputListTable = (props) => {
-    const {tableData, columns} = props;
+    const {tableData, columns, editAction} = props;
     const classes = useTableStyles();
 
     return (
@@ -19,7 +19,7 @@ const InputListTable = (props) => {
                 <TableContainer component={Paper}>
                     <Table aria-label="simple table" className={classes.table}>
                         <CustomTableHeader columns={columns}/>
-                        <CustomTableBody rows={tableData} columns={columns}/>
+                        <CustomTableBody rows={tableData} columns={columns} editAction={editAction}/>
                     </Table>
                     <Stack spacing={2}>
                         <Pagination

@@ -21,5 +21,9 @@ export const useTableStyles = makeStyles({
             padding: "6px",
             width: "5%"
         },
+    },
+    IconButton: {
+        padding: 0,
+        color: '#424242'
     }
 });

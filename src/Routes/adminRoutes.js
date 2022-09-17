@@ -9,12 +9,12 @@ const AdminRoutes = ({component: Component, ...rest}) => {
     const [routeRole, setRouteRole] = useState(userInfo?.role)
 
     useEffect(() => {
-        if (userInfo?.role === 'admin') {
+        if (userInfo?.role === 'Admin') {
             setRouteRole(userInfo?.role)
         }
     }, [userInfo])
 
-    return (routeRole === 'admin') &&
+    return (routeRole === 'Admin') &&
         <Route render={(props) => (
             (isLoggedIn) ? <Component {...props} {...rest} />
                 : <Redirect to="/login"/>
